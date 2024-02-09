@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: jjlevesquepipelinesjavascriptdocker 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jjlevesquepipelinesjavascriptdocker
+  template:
+    metadata:
+      labels:
+        app: jjlevesquepipelinesjavascriptdocker 
+    spec:
+      containers:
+        - name: jjlevesquepipelinesjavascriptdocker 
+          image: jjlcontainerregistry.azurecr.io/jjlevesquepipelinesjavascriptdocker
+          ports:
+          - containerPort: 8080
