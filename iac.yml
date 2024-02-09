@@ -8,7 +8,7 @@ jobs:
   steps:
   - task: AzureCLI@2
     inputs:
-      azureSubscription: 'Azure subscription 1'  # Replace with your Azure subscription name
+      azureSubscription: 'jjl-trial-subscription'  # Replace with your Azure subscription name
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
