@@ -1,0 +1,27 @@
+trigger:
+- none
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: RunAzureCLI
+  steps:
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'Azure subscription 1'  # Replace with your Azure subscription name
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        # Replace with your actual Azure CLI commands
+        az group create --name myapp-rg --location eastus
+		# Create a container registry
+		az acr create --resource-group myapp-rg --name jjlcontainerregistry --sku Basic
+		# Create a Kubernetes cluster
+		# Attention: we need to manually register microsoft.insights in the ressource provider of the subscription
+		az aks create \
+				--resource-group myapp-rg \
+				--name myapp \
+				--node-count 1 \
+				--enable-addons monitoring \
+				--generate-ssh-keys
+    displayName: 'Run Azure CLI Commands'
